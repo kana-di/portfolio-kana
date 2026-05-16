@@ -1,16 +1,47 @@
-# React + Vite
+# 🚀 Portfolio — Kana Diallo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?logo=bootstrap&logoColor=white)
+![Netlify](https://img.shields.io/badge/Netlify-Deployed-00C7B7?logo=netlify&logoColor=white)
 
-Currently, two official plugins are available:
+> Portfolio personnel développé en React 18 — Développeur Web Junior | Montréal, QC
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🌐 Live
 
-## React Compiler
+👉 **https://kana-diallo-portfolio.netlify.app**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Pages
 
-## Expanding the ESLint configuration
+- **Accueil** — Hero animé, compétences, CTA stage
+- **À propos** — Bio, formation, stack technique
+- **Projets** — 3 projets GitHub avec filtres par technologie
+- **Contact** — Formulaire de contact
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Stack
+
+| Technologie | Rôle |
+|---|---|
+| React 18 | Framework UI |
+| Vite | Build tool |
+| React Router v6 | Navigation SPA |
+| Bootstrap 5 | Design responsive |
+| Framer Motion | Animations |
+| JavaScript ES6+ | Langage |
+
+## 🚀 Lancer en local
+
+```bash
+git clone https://github.com/kana-di/portfolio-kana.git
+cd portfolio-kana
+npm install
+npm run dev
+```
+
+Ouvre http://localhost:5173
+
+## 👨‍💻 Auteur
+
+**Kana Diallo** — Étudiant DEC Techniques de l'informatique, Institut Teccart, Montréal  
+📧 kanadiallo20@gmail.com  
+🐙 [github.com/kana-di](https://github.com/kana-di)
