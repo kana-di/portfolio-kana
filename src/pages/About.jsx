@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { profile } from '../data/profile';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 30 },
@@ -7,21 +8,33 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.5, delay, ease: 'easeOut' },
 });
 
+const qualites = [
+  { emoji: '🚀', title: 'Je livre', text: 'Des projets menés jusqu’au bout et mis en ligne, pas seulement des exercices.' },
+  { emoji: '🧩', title: 'Full-stack', text: 'À l’aise du front-end au back-end, de la base de données jusqu’au déploiement.' },
+  { emoji: '📚', title: 'J’apprends vite', text: 'Nouvelles technologies prises en main seul : Symfony, Docker, thèmes bloc WordPress.' },
+  { emoji: '🤝', title: 'Esprit d’équipe', text: 'Git, GitHub et code documenté : habitué à travailler sur un code partagé.' },
+];
+
 const techCategories = [
   {
     title: 'Front-end',
     emoji: '🎨',
-    skills: ['React', 'JavaScript ES6+', 'HTML5', 'CSS3', 'Bootstrap 5'],
+    skills: ['React', 'JavaScript ES6+', 'HTML5', 'CSS3', 'Bootstrap 5', 'Framer Motion'],
   },
   {
     title: 'Back-end',
     emoji: '⚙️',
-    skills: ['PHP 8', 'Symfony 7', 'Node.js', 'Express'],
+    skills: ['PHP 8', 'Symfony 7', 'Node.js', 'Express', 'API REST'],
   },
   {
     title: 'Bases de données',
     emoji: '🗄️',
     skills: ['MySQL', 'PostgreSQL', 'MongoDB'],
+  },
+  {
+    title: 'CMS',
+    emoji: '🧱',
+    skills: ['WordPress', 'Thèmes bloc (FSE)', 'Gutenberg', 'SEO'],
   },
   {
     title: 'Outils',
@@ -83,22 +96,55 @@ const About = () => (
             <h2 style={{ fontWeight: 700, fontSize: '1.5rem', marginBottom: '1rem' }}>
               Kana Diallo
             </h2>
+            <p style={{ color: 'var(--accent)', fontWeight: 600, marginBottom: '1rem' }}>
+              Développeur web full-stack junior · {profile.disponibilite.toLowerCase()} pour un stage
+            </p>
             <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '1rem' }}>
-              Étudiant au DEC en Techniques de l’informatique,
-               je suis actuellement à la recherche d’un stage en développement web afin de mettre en pratique et approfondir 
-               mes compétences en React, JavaScript, HTML5, CSS3, Bootstrap 5, PHP, Symfony et Node.js. Motivé et passionné par le développement, je souhaite contribuer à des projets concrets tout en continuant à développer mon expertise technique.
+              Formé au DEC en Techniques de l&apos;informatique à l&apos;Institut Teccart, je construis des
+              projets web complets : interfaces en React, back-end en PHP / Symfony et Node.js,
+              bases de données MySQL et PostgreSQL, et sites WordPress sur mesure.
+            </p>
+            <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '1rem' }}>
+              Mon dernier projet, KanaStudio, est un site immobilier en ligne : thème WordPress codé à partir
+              d&apos;une maquette, optimisé (92 sur Lighthouse mobile) et pensé pour que le client le modifie seul.
             </p>
             <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-              Mes projets couvrent l&apos;e-commerce, les API REST et les applications web complètes.
-              J&apos;aime construire des interfaces propres, performantes et accessibles.
+              Je cherche un stage où je pourrai contribuer à de vrais projets au sein d&apos;une équipe,
+              apprendre les bonnes pratiques et livrer du code propre.
             </p>
           </motion.div>
         </div>
       </div>
     </section>
 
-    {/* ── FORMATION ── */}
+    {/* ── CE QUE J'APPORTE ── */}
     <section>
+      <div className="container">
+        <motion.div {...fadeUp()}>
+          <h2 className="section-title">
+            Ce que j&apos;apporte<span className="accent-dot">.</span>
+          </h2>
+          <div className="divider" />
+        </motion.div>
+
+        <div className="row g-4">
+          {qualites.map(({ emoji, title, text }, i) => (
+            <motion.div key={title} {...fadeUp(i * 0.1)} className="col-md-6 col-lg-3">
+              <div className="card-dark p-4 h-100">
+                <div style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>{emoji}</div>
+                <h3 style={{ fontWeight: 600, fontSize: '1rem', marginBottom: '0.5rem' }}>{title}</h3>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.7, margin: 0 }}>
+                  {text}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── FORMATION ── */}
+    <section style={{ background: 'var(--bg-secondary)' }}>
       <div className="container">
         <motion.div {...fadeUp()}>
           <h2 className="section-title">
@@ -148,7 +194,7 @@ const About = () => (
     </section>
 
     {/* ── COMPÉTENCES ── */}
-    <section style={{ background: 'var(--bg-secondary)' }}>
+    <section>
       <div className="container">
         <motion.div {...fadeUp()}>
           <h2 className="section-title">
@@ -159,7 +205,7 @@ const About = () => (
 
         <div className="row g-4">
           {techCategories.map(({ title, emoji, skills }, i) => (
-            <motion.div key={title} {...fadeUp(i * 0.1)} className="col-md-6">
+            <motion.div key={title} {...fadeUp(i * 0.1)} className="col-md-6 col-lg-4">
               <div className="card-dark p-4 h-100">
                 <h3 style={{ fontWeight: 600, fontSize: '1rem', marginBottom: '1rem' }}>
                   {emoji} {title}

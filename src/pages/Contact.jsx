@@ -1,21 +1,34 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { profile } from '../data/profile';
 
 const initialForm = { name: '', email: '', message: '' };
 
 const Contact = () => {
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = ({ target: { name, value } }) =>
     setForm((prev) => ({ ...prev, [name]: value }));
 
-  const handleSubmit = (e) => {
+  /* Envoi via Netlify Forms : les messages arrivent dans Netlify > Forms (et par courriel) */
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Message envoyé :', form);
-    setSubmitted(true);
-    setForm(initialForm);
-    setTimeout(() => setSubmitted(false), 4000);
+    setError(false);
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ 'form-name': 'contact', ...form }).toString(),
+      });
+      if (!res.ok) throw new Error(res.status);
+      setSubmitted(true);
+      setForm(initialForm);
+      setTimeout(() => setSubmitted(false), 6000);
+    } catch {
+      setError(true);
+    }
   };
 
   return (
@@ -38,7 +51,7 @@ const Contact = () => {
             </h1>
             <div className="divider" />
             <p className="section-subtitle">
-              Disponible pour un stage dès l&apos;été 2026 — n&apos;hésitez pas à me contacter.
+              Disponible dès maintenant pour un stage en développement web. Écrivez-moi, je réponds sous 24 h.
             </p>
           </motion.div>
         </div>
@@ -75,7 +88,23 @@ const Contact = () => {
                   </div>
                 )}
 
-                <form onSubmit={handleSubmit}>
+                {error && (
+                  <div
+                    style={{
+                      background: 'rgba(239,68,68,0.1)',
+                      border: '1px solid rgba(239,68,68,0.3)',
+                      color: '#f87171',
+                      borderRadius: 8,
+                      padding: '0.75rem 1rem',
+                      marginBottom: '1.5rem',
+                      fontSize: '0.875rem',
+                    }}
+                  >
+                    L&apos;envoi n&apos;a pas fonctionné. Écrivez-moi directement à {profile.email}.
+                  </div>
+                )}
+
+                <form name="contact" onSubmit={handleSubmit}>
                   <div className="mb-3">
                     <label
                       htmlFor="name"
@@ -202,6 +231,14 @@ const Contact = () => {
                   value: 'github.com/kana-di',
                   href: 'https://github.com/kana-di',
                 },
+                ...(profile.linkedin
+                  ? [{
+                      emoji: '💼',
+                      label: 'LinkedIn',
+                      value: profile.linkedin.replace(/^https?:\/\/(www\.)?/, ''),
+                      href: profile.linkedin,
+                    }]
+                  : []),
                 {
                   emoji: '📍',
                   label: 'Localisation',
@@ -241,8 +278,8 @@ const Contact = () => {
                 style={{ background: 'linear-gradient(135deg, rgba(139,92,246,0.12), rgba(139,92,246,0.04))' }}
               >
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', margin: 0, lineHeight: 1.7 }}>
-                  🎓 Disponible pour un stage en développement front-end dès l&apos;été 2026.
-                  Je réponds généralement sous 24h.
+                  🎓 Disponible dès maintenant pour un stage en développement web (front-end, back-end ou WordPress),
+                  à Montréal, en hybride ou à distance. Je réponds généralement sous 24 h.
                 </p>
               </div>
             </motion.div>

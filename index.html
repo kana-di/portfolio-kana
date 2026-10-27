@@ -1,13 +1,25 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio de Kana Diallo — Développeur Web Junior, Montréal" />
-    <title>Kana Diallo — Développeur Web Junior</title>
+    <meta name="description" content="Kana Diallo, développeur web full-stack junior à Montréal. Disponible dès maintenant pour un stage : React, PHP / Symfony, Node.js, WordPress." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Kana Diallo — Développeur web full-stack junior" />
+    <meta property="og:description" content="Disponible dès maintenant pour un stage en développement web à Montréal. Projets : site WordPress en ligne, e-commerce Symfony et PHP, API Node.js." />
+    <meta property="og:url" content="https://kana-diallo-portfolio.netlify.app/" />
+    <meta property="og:locale" content="fr_CA" />
+    <title>Kana Diallo — Développeur web full-stack junior</title>
   </head>
   <body>
+    <!-- Formulaire caché : permet à Netlify de détecter le formulaire de contact -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input name="bot-field" />
+      <input name="name" />
+      <input name="email" />
+      <textarea name="message"></textarea>
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
