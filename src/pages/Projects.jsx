@@ -1,7 +1,19 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import kanastudio from '../assets/kanastudio.webp';
 
 const projects = [
+  {
+    id: 4,
+    title: 'KanaStudio — Immobilier',
+    description:
+      'Site vitrine immobilier sur WordPress : thème bloc (FSE) sur mesure, 100 % éditable dans Gutenberg. Images WebP, préchargement, SEO intégré (Open Graph, JSON-LD). Lighthouse : 92 mobile, 100 SEO.',
+    stack: ['WordPress', 'Thème bloc', 'PHP', 'JavaScript', 'CSS'],
+    tags: ['WordPress', 'PHP'],
+    demo: 'https://kanastudio.freedev.app',
+    image: kanastudio,
+    emoji: '🏠',
+  },
   {
     id: 1,
     title: 'Librairie Symfony',
@@ -29,12 +41,12 @@ const projects = [
       'API REST complète avec 15+ endpoints, documentation Swagger interactive et déploiement Docker. Gestion des activités, inscriptions et utilisateurs.',
     stack: ['Node.js', 'Express', 'PostgreSQL', 'Swagger', 'Docker'],
     tags: ['Node.js'],
-    github: 'https://github.com/kana-di/ProjetFinal1',
+    github: 'https://github.com/kana-di/Gestion-activites-etudiantes',
     emoji: '🚀',
   },
 ];
 
-const filters = ['Tous', 'PHP', 'Node.js'];
+const filters = ['Tous', 'WordPress', 'PHP', 'Node.js'];
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('Tous');
@@ -117,22 +129,39 @@ const Projects = () => {
                     className="card-dark h-100 d-flex flex-column"
                     style={{ padding: '1.5rem' }}
                   >
-                    {/* Icône */}
-                    <div
-                      style={{
-                        width: 52,
-                        height: 52,
-                        borderRadius: 12,
-                        background: 'var(--accent-soft)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '1.5rem',
-                        marginBottom: '1rem',
-                      }}
-                    >
-                      {project.emoji}
-                    </div>
+                    {/* Capture ou icône */}
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={`Aperçu du site ${project.title}`}
+                        loading="lazy"
+                        style={{
+                          width: '100%',
+                          aspectRatio: '16 / 9',
+                          objectFit: 'cover',
+                          objectPosition: 'top',
+                          borderRadius: 10,
+                          border: '1px solid var(--border)',
+                          marginBottom: '1rem',
+                        }}
+                      />
+                    ) : (
+                      <div
+                        style={{
+                          width: 52,
+                          height: 52,
+                          borderRadius: 12,
+                          background: 'var(--accent-soft)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '1.5rem',
+                          marginBottom: '1rem',
+                        }}
+                      >
+                        {project.emoji}
+                      </div>
+                    )}
 
                     {/* Titre + description */}
                     <h3 style={{ fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.75rem' }}>
@@ -159,16 +188,31 @@ const Projects = () => {
                       ))}
                     </div>
 
-                    {/* Bouton GitHub */}
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-outline-accent"
-                      style={{ textAlign: 'center', width: '100%' }}
-                    >
-                      GitHub →
-                    </a>
+                    {/* Boutons */}
+                    <div className="d-flex gap-2">
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-accent"
+                          style={{ textAlign: 'center', flex: 1 }}
+                        >
+                          Voir le site →
+                        </a>
+                      )}
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-outline-accent"
+                          style={{ textAlign: 'center', flex: 1 }}
+                        >
+                          GitHub →
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </motion.div>
               ))}
